@@ -1,0 +1,8 @@
+faiss-cpu==1.8.0.post1
+groq==0.10.0
+langchain==0.2.15
+langchain-community==0.2.15
+python-dotenv==1.0.1
+streamlit==1.38.0
+sentence-transformers
+nltk
