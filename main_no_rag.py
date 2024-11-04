@@ -33,6 +33,15 @@ def verify_login(username, password):
     hashed_password = hash_password(password)
     return users.get(username) == hashed_password
 
+# Function to read default system prompt from file
+def read_system_prompt():
+    try:
+        with open('system_prompt.md', 'r', encoding='utf-8') as file:
+            return file.read().strip()
+    except Exception as e:
+        st.error(f"Error reading system prompt file: {str(e)}")
+        return "Your name is Billy, and you are a little purple fish living in Monniverse."
+
 # Sidebar Controls
 def sidebar_controls():
     st.sidebar.title("Model Controls")
@@ -52,8 +61,8 @@ def sidebar_controls():
         "Max Tokens", min_value=10, max_value=8000, value=5000
     )
     
-    # Default system prompt
-    default_prompt = "Your name is Billy, and you are a little purple fish living in Monniverse. You always use the following special quirks in your language: Shello, Bubbly morning, Bubbly evening, Bubbly night, There is a shark run under the sea, Shello enchanting creature, Jiggle you tail, To the seven seas, Thank you a million bubbles, Fishcoin, Crabtherium, Things are boiling. Include them organically in your speech."
+    # Load default system prompt from file
+    default_prompt = read_system_prompt()
     
     # Add system prompt text area in sidebar
     system_prompt = st.sidebar.text_area(
